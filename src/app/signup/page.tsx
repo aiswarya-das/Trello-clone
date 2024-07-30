@@ -36,23 +36,77 @@ export default function SignupPage(){
   }
   },[user]);
   return (
-    <div><center>
-      <h1><center>{loading ? "Processing" : "Signup"}</center></h1>
-      <hr/>
-      <label htmlFor="username" className="block font-bold mb-2">username</label>
-      <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black" id="username" type="text" value={user.username} onChange={(e)=>setUser({...user,username:e.target.value})} placeholder="Full name"></input>
-      <br />
-      <br />
-      <label className="block font-bold mb-2" htmlFor="email">Email</label>
-      <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black" id="email" type="text" value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})} placeholder="Your email"></input>
-      <br />
-      <br />
-      <label htmlFor="password" className="block font-bold mb-2">password</label>
-      <input className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 text-black" id="password" type="text" value={user.password} onChange={(e)=>setUser({...user,password:e.target.value})} placeholder="Password"></input>
-      <button onClick={onSignup}
-      className="p-2 block border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600 ">{buttonDisabled ? "No signup":"Signup"}</button>
-      <Link href="/login">Visit Login</Link>
-      </center>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-300 to-blue-200">
+      <div className="w-full max-w-md p-8 space-y-8 bg-white shadow-lg rounded-xl">
+        <div>
+          <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
+            Welcome to <span className="text-indigo-600">Workflo!</span>
+          </h2>
+        </div>
+        <div className="mt-8 space-y-6">
+          <div>
+            <div className="mt-1">
+              <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={user.username}
+                onChange={(e) => setUser({ ...user, username: e.target.value })}
+                placeholder="Full name"
+              />
+            </div>
+          </div>
+          <div>
+            <div className="mt-1">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={user.email}
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
+                placeholder="Your email"
+              />
+            </div>
+          </div>
+          <div>
+            <div className="mt-1">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                className="w-full px-3 py-2 border border-gray-300 text-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={user.password}
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
+                placeholder="Password"
+              />
+            </div>
+          </div>
+          <div>
+            <button
+              onClick={onSignup}
+              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
+                buttonDisabled ? 'bg-indigo-600' : 'bg-indigo-600 hover:bg-indigo-700'
+              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
+              disabled={buttonDisabled}
+            >
+              {loading ? "Processing..." : "Sign up"}
+            </button>
+          </div>
+        </div>
+        <p className="mt-2 text-sm text-center text-gray-600">
+            Already have an account?{" "}
+            <Link href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
+              Log in.
+            </Link>
+          </p>
+      </div>
     </div>
-  )
+  );
 }
